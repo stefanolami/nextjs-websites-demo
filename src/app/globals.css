@@ -12,4 +12,7 @@ body {
 	.card {
 		@apply bg-white rounded-lg shadow-lg border-2 border-black py-4 px-4;
 	}
+	.animation-button {
+		@apply bg-[#445d85] text-yellow-100 w-32 h-10 mx-auto rounded-lg block self-start;
+	}
 }
