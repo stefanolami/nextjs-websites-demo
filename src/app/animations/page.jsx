@@ -1,17 +1,24 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import {
 	motion,
 	AnimatePresence,
 	MotionConfig,
 	useAnimationControls,
+	useInView,
 } from 'framer-motion'
 import Image from 'next/image'
 
 export default function Animations() {
 	const [isVisible, setIsVisible] = useState(true)
 	const flipControls = useAnimationControls()
+	const ref = useRef(null)
+	const isInView = useInView(ref)
+
+	useEffect(() => {
+		console.log('is in view =>', isInView)
+	}, [isInView])
 
 	const handleClick = () => {
 		flipControls.start('flip')
@@ -22,7 +29,7 @@ export default function Animations() {
 			<h1 className="text-center text-3xl text-slate-800 mt-16">
 				Animations
 			</h1>
-			<div className="mt-40 mx-auto grid grid-cols-[144px_144px_144px_144px_144px_144px] grid-rows-[216px] grid-flow-row justify-center gap-10 mb-40">
+			<div className="mt-40 mx-auto grid grid-cols-[144px_144px_144px_144px_144px_144px] grid-rows-[216px] grid-flow-row justify-center gap-10 mb-52">
 				{/* FIRST - ANIMATION ON MOUNT AND EXIT*/}
 				<div className="animation-wrapper">
 					<button
@@ -109,6 +116,58 @@ export default function Animations() {
 						></motion.div>
 					</div>
 				</div>
+			</div>
+			{/* FOURTH - whilwInView useInView */}
+			<motion.div
+				className="animation-square w-full"
+				initial={{ backgroundColor: '#1E293B' }}
+				whileInView={{ backgroundColor: '#FFFFFF' }}
+				transition={{ delay: 1, duration: 1 }}
+			></motion.div>
+			<div
+				className="mx-auto px-64 text-lg mb-40 w-full"
+				ref={ref}
+			>
+				<p className="mb-8">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+					do eiusmod tempor incididunt ut labore et dolore magna
+					aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+					ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					Duis aute irure dolor in reprehenderit in voluptate velit
+					esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+					occaecat cupidatat non proident, sunt in culpa qui officia
+					deserunt mollit anim id est laborum
+				</p>
+				<p className="mb-8">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+					do eiusmod tempor incididunt ut labore et dolore magna
+					aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+					ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					Duis aute irure dolor in reprehenderit in voluptate velit
+					esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+					occaecat cupidatat non proident, sunt in culpa qui officia
+					deserunt mollit anim id est laborum
+				</p>
+				<p className="mb-8">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+					do eiusmod tempor incididunt ut labore et dolore magna
+					aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+					ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					Duis aute irure dolor in reprehenderit in voluptate velit
+					esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+					occaecat cupidatat non proident, sunt in culpa qui officia
+					deserunt mollit anim id est laborum
+				</p>
+				<p className="mb-8">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+					do eiusmod tempor incididunt ut labore et dolore magna
+					aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+					ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					Duis aute irure dolor in reprehenderit in voluptate velit
+					esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+					occaecat cupidatat non proident, sunt in culpa qui officia
+					deserunt mollit anim id est laborum
+				</p>
 			</div>
 		</div>
 	)
