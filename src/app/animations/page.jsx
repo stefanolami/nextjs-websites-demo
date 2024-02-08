@@ -7,6 +7,9 @@ import {
 	MotionConfig,
 	useAnimationControls,
 	useInView,
+	useScroll,
+	useSpring,
+	useTransform,
 } from 'framer-motion'
 import Image from 'next/image'
 
@@ -15,6 +18,14 @@ export default function Animations() {
 	const flipControls = useAnimationControls()
 	const ref = useRef(null)
 	const isInView = useInView(ref)
+
+	const { scrollYProgress } = useScroll()
+
+	const background = useTransform(
+		scrollYProgress,
+		[0, 1],
+		['#fef9c3', '#1e293b']
+	)
 
 	useEffect(() => {
 		console.log('is in view =>', isInView)
@@ -26,6 +37,14 @@ export default function Animations() {
 
 	return (
 		<div>
+			{/* FIFTH - SCROLL BASED ANIMATIONS */}
+			<motion.div
+				className="h-4 w-full top-20 sticky origin-left z-50"
+				style={{
+					scaleX: scrollYProgress,
+					background,
+				}}
+			></motion.div>
 			<h1 className="text-center text-3xl text-slate-800 mt-16">
 				Animations
 			</h1>
