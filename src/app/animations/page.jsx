@@ -1,11 +1,22 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence, MotionConfig } from 'framer-motion'
+import {
+	motion,
+	AnimatePresence,
+	MotionConfig,
+	useAnimationControls,
+} from 'framer-motion'
 import Image from 'next/image'
 
 export default function Animations() {
 	const [isVisible, setIsVisible] = useState(true)
+	const flipControls = useAnimationControls()
+
+	const handleClick = () => {
+		flipControls.start('flip')
+	}
+
 	return (
 		<div>
 			<h1 className="text-center text-3xl text-slate-800 mt-16">
@@ -48,7 +59,7 @@ export default function Animations() {
 						)}
 					</AnimatePresence>
 				</div>
-				{/* SECOND - GESTURES and MOTIONCONFIG */}
+				{/* SECOND - GESTURES (normal events catchers) and MOTIONCONFIG */}
 				<div className="animation-wrapper">
 					<MotionConfig
 						transition={{
@@ -77,8 +88,26 @@ export default function Animations() {
 							Tap me!
 						</motion.button>
 					</MotionConfig>
-					{/* THIRD - ANIMATION CONTROLS */}
-					<div className="animation-wrapper"></div>
+				</div>
+				{/* THIRD - ANIMATION CONTROLS (used to fire or manage animations of a component through external functions) */}
+				<div className="animation-wrapper">
+					<div className="animation-wrapper">
+						<button
+							className="animation-button"
+							onClick={handleClick}
+						>
+							Click me!
+						</button>
+						<motion.div
+							className="animation-square"
+							variants={{
+								initial: { rotate: 0 },
+								flip: { rotate: 360 },
+							}}
+							initial="initial"
+							animate={flipControls}
+						></motion.div>
+					</div>
 				</div>
 			</div>
 		</div>
