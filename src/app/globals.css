@@ -13,6 +13,12 @@ body {
 		@apply bg-white rounded-lg shadow-lg border-2 border-black py-4 px-4;
 	}
 	.animation-button {
-		@apply bg-[#445d85] text-yellow-100 w-32 h-10 mx-auto rounded-lg block self-start;
+		@apply bg-[#445d85] text-yellow-100 w-32 h-10 mx-auto rounded-lg block self-start shadow shadow-black;
+	}
+	.animation-wrapper {
+		@apply grid grid-rows-[1fr_3fr] gap-6 w-36;
+	}
+	.animation-square {
+		@apply w-36 h-36 bg-slate-800 rounded-lg;
 	}
 }
